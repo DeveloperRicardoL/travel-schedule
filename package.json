@@ -1,0 +1,19 @@
+{
+  "name": "agenda-viaje",
+  "version": "1.0.0",
+  "description": "-`npm init` -`npm install express`",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "prod": "node server.js"
+  },
+  "author": "Ricardo",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.21.1",
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.1",
+    "prisma": "^5.21.1"
+  }
+}

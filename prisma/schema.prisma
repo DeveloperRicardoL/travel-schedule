@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+datasource db {
+  provider  = "sqlite"
+  url       = "file:./agenda-viaje.db"
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  dni         String    @unique
+  passport    String    @unique
+  name        String
+  surname     String
+  email       String    @unique
+  password    String
+  dateOfBirth DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  agenda      Agenda[]
+}
+
+model Agenda {
+  id_agend          Int       @id @default(autoincrement())
+  travel_start_date DateTime
+  end_of_trip_date  DateTime
+  transport         Int
+  hour              DateTime
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  deletedAt         DateTime?
+  user              User      @relation(fields: [userId], references: [id])
+  userId            Int
+}
