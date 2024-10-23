@@ -35,7 +35,6 @@ export const createUserController = async (req, res) => {
     const user = await createUser(req.body);
     res.status(201).json(user);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ msg: "Error al crear el usuario" });
   }
 };
@@ -48,6 +47,7 @@ export const updateUserController = async (req, res) => {
     const user = await updateUser(id, req.body);
     res.status(200).json(user);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ msg: "Error al actualizar el usuario" });
   }
 };

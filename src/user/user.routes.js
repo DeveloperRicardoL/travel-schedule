@@ -14,6 +14,6 @@ ROUTER.get("/user/:id", getUserController);
 
 ROUTER.post("/user", createUserController);
 ROUTER.patch("/user/:id", updateUserController);
-ROUTER.patch("/user/:id", deleteUserController);
+ROUTER.delete("/user/:id", deleteUserController);
 
 export default ROUTER;

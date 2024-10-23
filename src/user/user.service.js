@@ -64,11 +64,32 @@ export const getUser = async (id) => {
   });
   return user;
 };
-export const updateUser = async (id) => {
-  const user = await prisma.user;
+export const updateUser = async (id, userData) => {
+  const { passport, name, surname, email, password, dateOfBirth } = userData;
+  const user = await prisma.user.update({
+    select: {
+      passport: true,
+      name: true,
+      surname: true,
+      email: true,
+      dateOfBirth: true,
+    },
+    where: { id, deletedAt: null },
+    data: {
+      ...(passport && { passport }),
+      ...(name && { name: name.toLowerCase() }),
+      ...(surname && { surname: surname.toLowerCase() }),
+      ...(email && { email: email.toLowerCase() }),
+      ...(password && { password }),
+      ...(dateOfBirth && { dateOfBirth: new Date(dateOfBirth) }),
+    },
+  });
   return user;
 };
 export const deleteUser = async (id) => {
-  const user = await prisma.user;
+  const user = await prisma.user.update({
+    where: { id, deletedAt: null },
+    data: { deletedAt: new Date() },
+  });
   return user;
 };
